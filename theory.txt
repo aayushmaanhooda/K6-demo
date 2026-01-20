@@ -1,9 +1,0 @@
-k6 run --vus 10 --iterations 20 test.js
-
-
-// k6 looks for these EXACT names:
-export const options = { ... }      // ✅ Test configuration
-export default function() { ... }   // ✅ VU code (required)
-export function setup() { ... }     // ✅ Setup function
-export function teardown() { ... }  // ✅ Teardown function
-export function handleSummary() {}  // ✅ Custom summary report

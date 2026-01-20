@@ -1,0 +1,24 @@
+SMOKE TEST (First)
+Purpose: Quick sanity check - does it work at all?
+A shakeout test, sometimes known as a smoke test, is a small test that checks for major issues before spending more time and resources. It typically uses one or a few VUs that run for a short amount of time
+
+
+If smoke test fails → Fix issues before moving forward!
+
+CODE ----------------------------------------------------
+
+// 1-smoke-test.js
+import http from 'k6/http';
+
+export const options = {
+    vus: 1,           // Only 1 user
+    duration: '30s',  // Very short duration
+    thresholds: {
+        http_req_duration: ['p(95)<1000'],  // Basic threshold
+        http_req_failed: ['rate<0.1'],
+    }
+};
+
+export default function () {
+    http.get('https://your-api.com/endpoint');
+}

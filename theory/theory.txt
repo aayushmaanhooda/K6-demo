@@ -1,0 +1,19 @@
+PART 1 
+
+k6 run --vus 10 --iterations 20 test.js
+// k6 looks for these EXACT names:
+export const options = { ... }      // ✅ Test configuration
+export default function() { ... }   // ✅ VU code (required)
+export function setup() { ... }     // ✅ Setup function
+export function teardown() { ... }  // ✅ Teardown function
+export function handleSummary() {}  // ✅ Custom summary report
+
+
+PART2 
+
+STRESS TESTING - It is used to check stability of system under extreme laod where you gradulaly 
+increase the load ntill you reach a point where the system starts to show signs 
+of stress or potential issuess.
+
+WHEN TO PERFORM - product launch, holiday sale, finaalcial transactions
+TIPS - Always conduct this after smoke and average laod tests 

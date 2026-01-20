@@ -1,0 +1,15 @@
+STRESS TEST (Third)
+
+Purpose: Push beyond normal - find the breaking point
+Stress testing assesses how the system performs when loads are heavier than usual. Note: Run stress tests only after smoke and average-load tests. Running this test type earlier may be wasteful and make it hard to pinpoint problems if they appear at low volumes or at loads under the average utilization.
+
+Stress testing is a type of load testing where you gradually increase the load on your system until it breaks or fails, to find its breaking point or limit.
+The goal is to answer: "At what point does my system crash or become unusable?"
+
+How It Works
+You start with normal load and keep increasing the number of virtual users until:
+
+Response times become unacceptable
+Errors start happening
+The system crashes or becomes unavailable
+CPU/Memory maxes out
