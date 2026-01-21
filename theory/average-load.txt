@@ -1,4 +1,5 @@
 AVERAGE LOAD TEST (Second)
+
 Purpose: Test normal/typical production load
 Average-load tests assess how the system performs under a typical load for your system or application. Typical load might be a regular day in production or an average timeframe in your daily traffic
 
@@ -9,23 +10,3 @@ Baseline performance metrics
 Response times at typical load (e.g., 100 concurrent users)
 
 
-CODE ------------------------------------------------------
-
-// 2-average-load-test.js
-import http from 'k6/http';
-
-export const options = {
-    stages: [
-        { duration: '2m', target: 10 },    // Ramp up to 10 VUs over 2 mins
-        { duration: '5m', target: 10 },    // Stay at 10 VUs for 5 mins
-        { duration: '2m', target: 0 },     // Ramp down over 2 mins
-    ],
-    thresholds: {
-        http_req_duration: ['p(95)<500'],  // 95% requests < 500ms
-        http_req_failed: ['rate<0.01'],    // Less than 1% errors
-    }
-};
-
-export default function () {
-    http.get('https://your-api.com/endpoint');
-}
