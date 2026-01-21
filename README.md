@@ -7,6 +7,7 @@
 ## Repo Layout (brief)
 - `http/` — API and HTTP-focused k6 scripts (POST tests, options tuning).
 - `browser/` — Browser-based k6 scripts for UI interactions and navigation.
+- `cloud/` — k6 Cloud run config; uses `__ENV.id` for projectID.
 - `initial-test/` — Early k6 scripts for basic smoke checks.
 - `theory/` — Quick notes summarizing test types and ideas.
 
@@ -15,4 +16,4 @@
 - Ran short load tests (fixed VUs over a few seconds) to see request throughput.
 - Automated a sample registration flow in the browser and asserted on final page text.
 - Captured basic performance signals (response status, navigation waits) during runs.
-Experimenting K6
+- Triggered a k6 Cloud test (`cloud/cloud-test.js`) with VUs/duration and named runs; set `id` via env var (`__ENV.id`) for project mapping.
