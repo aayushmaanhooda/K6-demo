@@ -4,7 +4,7 @@ import os
 
 load_dotenv()
 
-url  = os.getenv("DATABASEURL")
+url  = os.getenv("DATABASE_URL")
 
 engine = create_engine(url, echo=True)
 
@@ -15,4 +15,4 @@ def create_db_and_table():
 def get_session():
     with Session(engine) as session:
         yield session
-        
+

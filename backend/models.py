@@ -12,5 +12,4 @@ class TodoCreate(SQLModel):
     description: str
 
 class TodoUpdate(SQLModel):
-    task: str
     completed: bool 
