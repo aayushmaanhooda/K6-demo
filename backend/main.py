@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from contextlib import asynccontextmanager
 from models import Todo, TodoCreate, TodoUpdate
-from db import create_db_and_table, get_session
+from db import create_db_and_table, get_session, engine
 from logger import get_logger
 from sqlmodel import Session, select
 
@@ -10,6 +10,9 @@ logger = get_logger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting up....")
+    logger.info(f"Pool size: {engine.pool.size()}")
+    logger.info(f"Checked out: {engine.pool.checkedout()}")
+    logger.info(f"Overflow: {engine.pool.overflow()}")
     create_db_and_table()
     yield
     logger.info("Shutting down...")
@@ -25,6 +28,7 @@ def health():
 
 @app.post("/todo")
 def create_todo(todo: TodoCreate, session: Session = Depends(get_session)):
+    logger.info(f"Pool checked out: {engine.pool.checkedout()}, overflow: {engine.pool.overflow()}")
     task = todo.task
     description = todo.description
 
