@@ -1,0 +1,31 @@
+5 Things to Improve Backend Performance
+
+1. Increase DB Connection Pool
+# db.py
+engine = create_engine(
+    url,
+    echo=False,           # turn off SQL logging
+    pool_size=20,         # 20 ready connections (default: 5)
+    max_overflow=30,      # 30 more under load (default: 10)
+    pool_timeout=30,      # wait time for connection
+)
+
+2. Add More Workers
+# Instead of single worker:
+uvicorn main:app --workers 4 --port 8080
+
+# Rule: workers = (CPU cores * 2) + 1
+# 4 core machine = 9 workers
+
+
+3. Use Async Endpoints
+# Before (sync) - blocks during DB call:
+@app.post("/todo")
+def create_todo(...):
+
+# After (async) - handles more concurrent requests:
+@app.post("/todo")
+async def create_todo(...):
+
+
+4. Use Ngnix if not local 
