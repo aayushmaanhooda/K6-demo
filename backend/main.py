@@ -53,7 +53,7 @@ def get_todo(session: Session = Depends(get_session)):
     
     return {
         "message": "all todo",
-        "todos": [res for res in results]
+        "total": len([res for res in results])
     }
 
 
